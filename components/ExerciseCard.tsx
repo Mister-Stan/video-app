@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface ExerciseCardProps {
   exercise: string;
@@ -23,6 +23,9 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
           keyboardType="numeric"
         />
       </View>
+      <TouchableOpacity style={styles.submitButton} onPress={() => {}}>
+        <Text style={styles.submitButtonText}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -42,6 +45,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 15,
   },
   input: {
     backgroundColor: '#333',
@@ -49,6 +53,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     width: '48%',
+  },
+  submitButton: {
+    backgroundColor: '#1DB954',
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    marginTop: 15,
+  },
+  submitButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

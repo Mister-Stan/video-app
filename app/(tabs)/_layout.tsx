@@ -1,6 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Platform, ScrollView } from 'react-native';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { StyleSheet, ScrollView, View, Text, SafeAreaView, StatusBar } from 'react-native';
 import ExerciseCard from '@/components/ExerciseCard';
 
 const exercises = [
@@ -18,38 +17,40 @@ const exercises = [
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-            <ScrollView>
-        {exercises.map((exercise) => (
-          <ExerciseCard key={exercise} exercise={exercise} />
-        ))}
-      </ScrollView>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar barStyle="light-content" />
+      <View style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Gym Tracker</Text>
+        </View>
+        <ScrollView>
+          {exercises.map((exercise) => (
+            <ExerciseCard key={exercise} exercise={exercise} />
+          ))}
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#121212',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#121212',
+  },
   titleContainer: {
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    paddingVertical: 20,
+    backgroundColor: '#1D3D47',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
